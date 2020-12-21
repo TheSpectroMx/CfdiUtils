@@ -30,6 +30,10 @@
 
 ## UNRELEASED
 
+### 2020-12-20
+
+- Validation `SELLO04` fails when there are special caracters like `é` and `LC_CTYPE` is not setup.
+
 ### 2020-10-08
 
 - Looks like web service at `https://rdc.sat.gob.mx/` is having issues (again). This is breaking testing.
