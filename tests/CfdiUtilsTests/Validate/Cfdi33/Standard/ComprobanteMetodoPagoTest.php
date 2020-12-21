@@ -17,7 +17,7 @@ class ComprobanteMetodoPagoTest extends ValidateTestCase
         $this->validator = new ComprobanteMetodoPago();
     }
 
-    public function providerValidCases()
+    public function providerValidCases(): array
     {
         return[
             ['T', null, 'METPAG01'],
@@ -32,11 +32,11 @@ class ComprobanteMetodoPagoTest extends ValidateTestCase
 
     /**
      * @param string $tipoDeComprobante
-     * @param mixed $metodoDePago
+     * @param string|null $metodoDePago
      * @param string $ok
      * @dataProvider providerValidCases
      */
-    public function testValidCases($tipoDeComprobante, $metodoDePago, $ok)
+    public function testValidCases(string $tipoDeComprobante, ?string $metodoDePago, string $ok)
     {
         $this->comprobante->addAttributes([
             'TipoDeComprobante' => $tipoDeComprobante,
@@ -47,7 +47,7 @@ class ComprobanteMetodoPagoTest extends ValidateTestCase
         $this->assertStatusEqualsCode(Status::ok(), $ok);
     }
 
-    public function providerInvalidCases()
+    public function providerInvalidCases(): array
     {
         return[
             ['T', 'PUE', 'METPAG01'],
@@ -65,11 +65,11 @@ class ComprobanteMetodoPagoTest extends ValidateTestCase
 
     /**
      * @param string $tipoDeComprobante
-     * @param mixed $metodoDePago
+     * @param string|null $metodoDePago
      * @param string $error
      * @dataProvider providerInvalidCases
      */
-    public function testInvalidCases($tipoDeComprobante, $metodoDePago, $error)
+    public function testInvalidCases(string $tipoDeComprobante, ?string $metodoDePago, string $error)
     {
         $this->comprobante->addAttributes([
             'TipoDeComprobante' => $tipoDeComprobante,
@@ -80,7 +80,7 @@ class ComprobanteMetodoPagoTest extends ValidateTestCase
         $this->assertStatusEqualsCode(Status::error(), $error);
     }
 
-    public function providerNoneCases()
+    public function providerNoneCases(): array
     {
         return [
             [null, ''],
@@ -90,11 +90,11 @@ class ComprobanteMetodoPagoTest extends ValidateTestCase
     }
 
     /**
-     * @param mixed $tipoDeComprobante
+     * @param string|null $tipoDeComprobante
      * @param string $metodoDePago
      * @dataProvider providerNoneCases
      */
-    public function testNoneCases($tipoDeComprobante, $metodoDePago)
+    public function testNoneCases(?string $tipoDeComprobante, string $metodoDePago)
     {
         $this->comprobante->addAttributes([
             'TipoDeComprobante' => $tipoDeComprobante,
